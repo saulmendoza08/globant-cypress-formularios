@@ -10,8 +10,15 @@ context('Formularios',()=>{
         si se dejan campos obligatorios vacíos y que se 
         muestren los mensajes de error correspondientes.
     */
-    it('Test #1 : Envio de datos vacios en campos requeridos',()=>{
+    it('Test #1-1 : Envio de nombre vacio en campo',()=>{
         cy.get('#g4072-fullname').type('');
+        cy.get('#g4072-email').type('mail');
+    
+        cy.get('form').submit();
+    })
+    
+    it('Test #1-2 : Envio de email vacio en campo',()=>{
+        cy.get('#g4072-fullname').type('Juan');
         cy.get('#g4072-email').type('');
     
         cy.get('form').submit();
@@ -22,7 +29,7 @@ context('Formularios',()=>{
         los diferentes tipos de datos en los campos del formulario 
         (por ejemplo, correo electrónico, número de teléfono, fecha, etc.).
     */
-    it.only('Test #2 : Tipo de dato',()=>{
+    it('Test #2 : Tipo de dato',()=>{
         cy.get('form')
     });
 
