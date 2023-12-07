@@ -13,7 +13,7 @@ context('Formularios',()=>{
      *  si se dejan campos obligatorios vacíos y que se 
      *  muestren los mensajes de error correspondientes.
      */
-    it('Test #1-1 : Evitar envio vacio en campos requeridos',()=>{
+    it('Test #1 : Evitar envio vacio en campos requeridos',()=>{
         cy.get('#g4072-fullname').clear(); // Vaciar el campo de nombre
         cy.get('#g4072-email').clear(); // Vaciar el campo de email
 
@@ -24,7 +24,7 @@ context('Formularios',()=>{
 
     })
     
-    it('Test #1-2 : Evitar envio con email vacio',()=>{
+    it('Test #2 : Evitar envio con email vacio',()=>{
         cy.get('#g4072-fullname').clear(); // Vaciar el campo de nombre
         cy.get('#g4072-email').clear(); // Vaciar el campo de email
 
@@ -35,7 +35,7 @@ context('Formularios',()=>{
 
     })
 
-    it('Test #1-3 : Evitar envio de nombre vacio',()=>{
+    it('Test #3 : Evitar envio de nombre vacio',()=>{
         cy.get('#g4072-fullname').clear(); // Vaciar el campo de nombre
         cy.get('#g4072-email').clear(); // Vaciar el campo de email
 
@@ -51,17 +51,20 @@ context('Formularios',()=>{
      * los diferentes tipos de datos en los campos del formulario 
      * (por ejemplo, correo electrónico, número de teléfono, fecha, etc.).
     */
-    it.only('Test #2 : Validacion nombre ',()=>{
-        cy.get('#contact-form-4072 > form');
-    });
+    it('Test #4 : Validacion tipo de dato en nombre ',()=>{
+        cy.get('#g4072-fullname').clear();
 
-    /**
-     *  Prueba de envío exitoso: Comprueba que el formulario 
-     *  se envíe correctamente con datos válidos y verifica 
-     *  si se muestra un mensaje de éxito.
-     */
+        cy.get('#g4072-fullname').type('Saul123!@#');
+        cy.get('#g4072-email').type('saul@mail.com');
+
+        cy.get('#contact-form-4072 > form').submit();
+        cy.contains('Your message has been sent').should('not.be.visible'); 
+
+    });
      
-    it('Test #3 : Envio exitoso',()=>{});
+    it('Test #5 : Validacion de tipo de dato en email',()=>{
+        
+    });
 
     /**
      * Prueba de longitud mínima y máxima: Comprueba que 
@@ -69,7 +72,7 @@ context('Formularios',()=>{
      * en los campos de texto y que se muestren los mensajes de error 
      * correspondientes cuando se superen los límites.
      *  */
-    it('Test #4 : Longitud maxima y minima',()=>{});
+    it('Test #6 : Longitud maxima y minima',()=>{});
 
     /**
      * Prueba de formato de correo electrónico válido: 
@@ -77,7 +80,7 @@ context('Formularios',()=>{
      * formato de correo electrónico y que se muestre un mensaje 
      * de error si se ingresa un correo electrónico inválido.
      */
-    it('Test #5 : Formato de correo electronico',()=>{});
+    it('Test #7 : Formato de correo electronico',()=>{});
     
     /**
      * Prueba de selección de opciones: Si tienes campos de selección,
@@ -85,37 +88,23 @@ context('Formularios',()=>{
      * que se muestren los mensajes de error si no se selecciona 
      * ninguna opción.
      */
-    it('Test #6 : Seleccion de opciones',()=>{});
+    it('Test #8 : Seleccion de opciones',()=>{});
 
     /**
      * Prueba de visualización de mensajes de error: 
      * Verifica que se muestren los mensajes de error adecuados 
      * cuando se ingresen datos incorrectos o se omitan campos requeridos.
      */
-    it('Test #7 : Prueba de visualizacion de mensajes de error',()=>{});
+    it('Test #9 : Prueba de visualizacion de mensajes de error',()=>{});
 
     /**
      * Prueba de caracteres especiales: Si tienes campos de texto, 
      * verifica que se manejen correctamente los caracteres especiales
      * y que no causen problemas en el envío del formulario.
      */
-    it('Test #8 : Caracteres especiales',()=>{});
+    it('Test #10 : Caracteres especiales',()=>{});
 
-    /**
-     * Prueba de respuesta de servidor: Simula una respuesta 
-     * del servidor con datos incorrectos y verifica que el formulario 
-     * maneje correctamente esta respuesta y muestre los mensajes 
-     * de error correspondientes.
-     */
-    it('Test #9 : Respuesta del servidor',()=>{});
-
-    /**
-     * Prueba de navegación: Verifica que después de enviar 
-     * el formulario correctamente, se redirija correctamente 
-     * a la página siguiente o se muestre el mensaje de 
-     * confirmación correspondiente.
-     */
-    it('Test #10 : Prueba de navegacion',()=>{});
+    
     
 })
 
