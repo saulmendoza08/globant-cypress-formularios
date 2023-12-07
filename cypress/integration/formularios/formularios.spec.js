@@ -63,7 +63,11 @@ context('Formularios',()=>{
     });
      
     it('Test #5 : Validacion de tipo de dato en email',()=>{
-        
+        cy.get('#g4072-fullname').type('Saul');
+        cy.get('#g4072-email').type('saul');
+
+        cy.get('#contact-form-4072 > form').submit();
+        cy.contains('Email requires a valid email address');
     });
 
     /**
@@ -72,37 +76,21 @@ context('Formularios',()=>{
      * en los campos de texto y que se muestren los mensajes de error 
      * correspondientes cuando se superen los límites.
      *  */
-    it('Test #6 : Longitud maxima y minima',()=>{});
+    it.only('Test #6 : Longitud maxima en nombre',()=>{
 
-    /**
-     * Prueba de formato de correo electrónico válido: 
-     * Verifica que se realice la validación correcta para el 
-     * formato de correo electrónico y que se muestre un mensaje 
-     * de error si se ingresa un correo electrónico inválido.
-     */
-    it('Test #7 : Formato de correo electronico',()=>{});
+    });
+
+ 
+    it('Test #7 : Longitud minima en nombre',()=>{});
     
-    /**
-     * Prueba de selección de opciones: Si tienes campos de selección,
-     *  verifica que se pueda seleccionar correctamente una opción y
-     * que se muestren los mensajes de error si no se selecciona 
-     * ninguna opción.
-     */
-    it('Test #8 : Seleccion de opciones',()=>{});
+   
+    it('Test #8 : Longitud maxima en email',()=>{});
 
-    /**
-     * Prueba de visualización de mensajes de error: 
-     * Verifica que se muestren los mensajes de error adecuados 
-     * cuando se ingresen datos incorrectos o se omitan campos requeridos.
-     */
-    it('Test #9 : Prueba de visualizacion de mensajes de error',()=>{});
+   
+    it('Test #9 : Longitud minima  en email',()=>{});
 
-    /**
-     * Prueba de caracteres especiales: Si tienes campos de texto, 
-     * verifica que se manejen correctamente los caracteres especiales
-     * y que no causen problemas en el envío del formulario.
-     */
-    it('Test #10 : Caracteres especiales',()=>{});
+  
+    it('Test #10 : Datos correctos',()=>{});
 
     
     
