@@ -80,7 +80,7 @@ context('Formularios',()=>{
      * en los campos de texto y que se muestren los mensajes de error 
      * correspondientes cuando se superen los límites.
      *  */
-    it.only('Test #6 : Longitud maxima en nombre',()=>{
+    it('Test #6 : Longitud maxima en nombre',()=>{
         
     });
 
@@ -94,7 +94,17 @@ context('Formularios',()=>{
     it('Test #9 : Longitud minima  en email',()=>{});
 
   
-    it('Test #10 : Datos correctos',()=>{});
+    it.only('Test #10 : Datos correctos',()=>{
+
+        cy.get('#g4072-fullname').type('saul'); 
+        cy.get('#g4072-email').type('saul@mail.com'); 
+        cy.get('#g4072-phonenumber').type('+543816999999');
+        cy.get('#g4072-qatools-button').click();
+        cy.get('#ui-id-2').click();
+        
+
+        cy.get('#contact-form-4072 > form').submit();
+    });
 
     
     
