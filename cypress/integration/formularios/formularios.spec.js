@@ -101,6 +101,7 @@ context('Formularios',()=>{
         cy.get('#g4072-phonenumber').type('+543816999999');
         cy.get('#g4072-qatools-button').click();
         cy.get('#ui-id-2').click();
+
         
 
         cy.get('#contact-form-4072 > form').submit();
