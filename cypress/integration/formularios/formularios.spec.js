@@ -70,6 +70,10 @@ context('Formularios',()=>{
         cy.contains('Email requires a valid email address');
     });
 
+
+    //ME ABURRI , OTRO DIA LO TERMINO
+
+
     /**
      * Prueba de longitud mínima y máxima: Comprueba que 
      * se apliquen las restricciones de longitud mínima y máxima 
@@ -77,7 +81,7 @@ context('Formularios',()=>{
      * correspondientes cuando se superen los límites.
      *  */
     it.only('Test #6 : Longitud maxima en nombre',()=>{
-
+        
     });
 
  
