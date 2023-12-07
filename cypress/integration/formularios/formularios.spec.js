@@ -1,3 +1,6 @@
+/// <reference types="Cypress" />
+
+
 context('Formularios',()=>{
     //primero se define la url, en este caso toma la baseUrl+ cy.visit.
     beforeEach(()=>{
@@ -5,39 +8,59 @@ context('Formularios',()=>{
         cy.visit('/');
     })
 
-    /*  
-        Verifica que no se permita enviar el formulario 
-        si se dejan campos obligatorios vacíos y que se 
-        muestren los mensajes de error correspondientes.
-    */
-    it('Test #1-1 : Envio de nombre vacio en campo',()=>{
-        cy.get('#g4072-fullname').type('');
-        cy.get('#g4072-email').type('mail');
-    
-        cy.get('form').submit();
+    /**
+     *  Verifica que no se permita enviar el formulario 
+     *  si se dejan campos obligatorios vacíos y que se 
+     *  muestren los mensajes de error correspondientes.
+     */
+    it('Test #1-1 : Evitar envio vacio en campos requeridos',()=>{
+        cy.get('#g4072-fullname').clear(); // Vaciar el campo de nombre
+        cy.get('#g4072-email').clear(); // Vaciar el campo de email
+
+        cy.get('#contact-form-4072 > form').submit(); //envio el formulario
+        cy.contains('Full Name is required'); //Verifico que el mensaje de error de nombre exista
+        cy.contains('Email requires a valid email address'); //Verifico que el mensaje de error de email exista
+        
+
     })
     
-    it('Test #1-2 : Envio de email vacio en campo',()=>{
+    it('Test #1-2 : Evitar envio con email vacio',()=>{
+        cy.get('#g4072-fullname').clear(); // Vaciar el campo de nombre
+        cy.get('#g4072-email').clear(); // Vaciar el campo de email
+
         cy.get('#g4072-fullname').type('Juan');
-        cy.get('#g4072-email').type('');
-    
-        cy.get('form').submit();
+        cy.get('#contact-form-4072 > form').submit(); //envio el formulario
+
+        cy.contains('Email requires a valid email address'); //Verifico que el mensaje de error de nombre exista
+
     })
 
-    /*
-        Verifica que se realice la validación correcta para 
-        los diferentes tipos de datos en los campos del formulario 
-        (por ejemplo, correo electrónico, número de teléfono, fecha, etc.).
+    it('Test #1-3 : Evitar envio de nombre vacio',()=>{
+        cy.get('#g4072-fullname').clear(); // Vaciar el campo de nombre
+        cy.get('#g4072-email').clear(); // Vaciar el campo de email
+
+        cy.get('#g4072-email').type('mail@mail.com');
+        cy.get('#contact-form-4072 > form').submit(); //envio el formulario
+
+        cy.contains('Full Name is required'); //Verifico que el mensaje de error de nombre exista
+
+    })
+
+    /**
+     * Verifica que se realice la validación correcta para
+     * los diferentes tipos de datos en los campos del formulario 
+     * (por ejemplo, correo electrónico, número de teléfono, fecha, etc.).
     */
-    it('Test #2 : Tipo de dato',()=>{
-        cy.get('form')
+    it.only('Test #2 : Validacion nombre ',()=>{
+        cy.get('#contact-form-4072 > form');
     });
 
-    /*
-        Prueba de envío exitoso: Comprueba que el formulario 
-        se envíe correctamente con datos válidos y verifica 
-        si se muestra un mensaje de éxito.
-    */
+    /**
+     *  Prueba de envío exitoso: Comprueba que el formulario 
+     *  se envíe correctamente con datos válidos y verifica 
+     *  si se muestra un mensaje de éxito.
+     */
+     
     it('Test #3 : Envio exitoso',()=>{});
 
     /**
