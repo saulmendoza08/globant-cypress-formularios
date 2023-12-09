@@ -8,11 +8,7 @@ context('Formularios',()=>{
         cy.visit('/');
     })
 
-    /**
-     *  Verifica que no se permita enviar el formulario 
-     *  si se dejan campos obligatorios vacíos y que se 
-     *  muestren los mensajes de error correspondientes.
-     */
+   
     it('Test #1 : Evitar envio vacio en campos requeridos',()=>{
         cy.get('#g4072-fullname').clear(); // Vaciar el campo de nombre
         cy.get('#g4072-email').clear(); // Vaciar el campo de email
@@ -46,11 +42,7 @@ context('Formularios',()=>{
 
     })
 
-    /**
-     * Verifica que se realice la validación correcta para
-     * los diferentes tipos de datos en los campos del formulario 
-     * (por ejemplo, correo electrónico, número de teléfono, fecha, etc.).
-    */
+    
     it('Test #4 : Validacion tipo de dato en nombre ',()=>{
         cy.get('#g4072-fullname').clear();
 
@@ -70,41 +62,67 @@ context('Formularios',()=>{
         cy.contains('Email requires a valid email address');
     });
 
-
-    //ME ABURRI , OTRO DIA LO TERMINO
-
-
-    /**
-     * Prueba de longitud mínima y máxima: Comprueba que 
-     * se apliquen las restricciones de longitud mínima y máxima 
-     * en los campos de texto y que se muestren los mensajes de error 
-     * correspondientes cuando se superen los límites.
-     *  */
     it('Test #6 : Longitud maxima en nombre',()=>{
-        
+        cy.get('#g4072-fullname').clear();
+        cy.get('#g4072-fullname').type('ñasldkjfñlaksdjfñlaskjdflñkasjflñkasjfñlkasjdflkjasñlkdfjlaskjdflñaskjflaksjdflñaskjdflñaksdjfñlaskjflakñsdjfñlkasjdflñkasjdflñaksjdfñlkasjdflñkajsdflñkjasdlñkfjalñskdjfaslñkdjflaksdjflaksdjflñaskjdfklasdjflaskdjflakñsdjflaskdjflaksjdflkasdjflkasdjflaskdjlkasdjflñaksjdflñaksdj');
+        cy.get('#g4072-email').clear();
+        cy.get('#g4072-email').type('saul@mail.com');
+        cy.get('.wp-block-jetpack-button > .wp-block-button__link').click();
+
     });
 
  
-    it('Test #7 : Longitud minima en nombre',()=>{});
+    it('Test #7 : Longitud minima en nombre',()=>{
+        cy.get('#g4072-fullname').clear();
+        cy.get('#g4072-fullname').type('a');
+        cy.get('#g4072-email').clear();
+        cy.get('#g4072-email').type('saul@mail.com');
+        cy.get('.wp-block-jetpack-button > .wp-block-button__link').click();
+
+        cy.contains('Your message has been sent').should('not.exist');
+    });
     
    
-    it('Test #8 : Longitud maxima en email',()=>{});
+    it('Test #8 : Longitud maxima en email',()=>{
+        cy.get('#g4072-fullname').clear();
+        cy.get('#g4072-fullname').type('asdasdas');
+        cy.get('#g4072-email').clear();
+        cy.get('#g4072-email').type('ñklasjdhfoñasdhbfklñajsdhbgvlkasjdhbfkjasdhbflkasjdhfklasjhdfljkasdhflkasjhfaklsjdhflaksjdhflkasjdhflasjkdhfklasjdhfkljasdhfklajshdfkljasdhfkljashdfkljashdfkljashdfkljashdlfjkhasldkjfh@mail.com');
+        cy.get('.wp-block-jetpack-button > .wp-block-button__link').click();
+        cy.get('.wp-block-jetpack-button > .wp-block-button__link').click();
+        cy.get('#g4072-email').clear();
+        cy.get('#g4072-email').type('oiuyrwqiouyroiquweyriouqweyruioqwyeriuqwyeriuqyweioruyqwiueryoiquwyeruioqweyruiqwyeriouqweyriuoqweyrouiqweyruioqweyrioqwueyrioqwuyerioqwueyriqwuoeyrioquweyriuqwyeriouqwyeoruiyqwoeuiryqiowueyrqiowuey@mail.com');
+        cy.get('.wp-block-jetpack-button > .wp-block-button__link').click();
+
+        cy.contains('Your message has been sent').should('not.exist');
+    });
 
    
-    it('Test #9 : Longitud minima  en email',()=>{});
+    it.only('Test #9 : Formato de email',()=>{
+        /* ==== Generated with Cypress Studio ==== */
+        cy.get('#g4072-fullname').clear();
+        cy.get('#g4072-fullname').type('saul');
+        cy.get('#g4072-email').clear();
+        cy.get('#g4072-email').type('mail');
+        cy.get('.wp-block-jetpack-button > .wp-block-button__link').click();
+        /* ==== End Cypress Studio ==== */
+
+        cy.get('#contact-form-4072 > form').submit();
+        cy.contains('Email requires a valid email address');
+    });
 
   
-    it.only('Test #10 : Datos correctos',()=>{
+    it('Test #10 : Formulario completo',()=>{
 
         cy.get('#g4072-fullname').type('saul'); 
         cy.get('#g4072-email').type('saul@mail.com'); 
         cy.get('#g4072-phonenumber').type('+543816999999');
         cy.get('#g4072-qatools-button').click();
         cy.get('#ui-id-2').click();
-
-        
-
+    
         cy.get('#contact-form-4072 > form').submit();
+        cy.contains('Your message has been sent')
+    
     });
 
     
